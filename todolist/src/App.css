@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.container{
+
+}
+
+button{
+  font-size:2rem;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

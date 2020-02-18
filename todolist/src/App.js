@@ -4,7 +4,7 @@ import './App.css';
 import { todoReducer, initialState } from './reducers/TodoReducer';
 import TodoScreen from './reducers/TodoScreen'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Button} from 'reactstrap'
 
 
 
@@ -15,6 +15,9 @@ const [state,dispatch] = useReducer(todoReducer,initialState)
 
     const [todo,setTodo] = useState('')
 
+    const btn ={
+      fontSize:"1.6rem"
+    }
 
      // useEffect(()=>{
      //      setTodoList(
@@ -33,22 +36,28 @@ const [state,dispatch] = useReducer(todoReducer,initialState)
     dispatch={dispatch}
     />
      <div className="card">
-     <input type='text' name="todo" onChange={(e)=>{
-      setTodo(e.target.value)
-     }}
+     <input type='text' name="todo" 
+     onChange={(e)=>{setTodo(e.target.value)}}
+     onKeyDown={(e)=>{if(e.which===13){dispatch({
+          type:'ADD_TODO',payload:e.target.value
+        }); document.querySelector(".card input").value=''
+   }}}
      className='form-control'
+     placeholder="enter task here..."
      />
-     <button onClick={()=>{
+     <Button style={btn} onClick={()=>{
         dispatch({
           type:'ADD_TODO', payload:todo,
-        })
+        });
+
+        document.querySelector(".card input").value=''
      }}
 
      className="btn btn-info"
 
-     >post</button>
+     >post</Button>
 
-      <button onClick={()=>{
+      <Button style={btn} onClick={()=>{
         dispatch({
           type:'CLEAR'
         })
@@ -56,7 +65,7 @@ const [state,dispatch] = useReducer(todoReducer,initialState)
 
      className="btn btn-danger"
 
-     >Clear</button>
+     >Clear</Button>
      </div>
     </div>
   );

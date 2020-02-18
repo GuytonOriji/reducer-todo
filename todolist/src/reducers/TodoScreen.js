@@ -19,11 +19,21 @@ function TodoScreen (props){
      // },[todoList])
 
   
-
+const instructions = {
+        display:"flex",
+        flexDirection:"column"
+}
 
 
              return (
     <div className="App">
+    <h1>Todo List</h1><br />
+    <ol style={instructions}>
+    <li>Post some tasks</li>
+    <li>Click on task you've completed</li>
+    <li>Clear all completed task</li>
+    <li>Repeat :)</li>
+    </ol>
      <div className="screen">
         {           
                 props.list && props.list.map(task=>{
